@@ -23,7 +23,7 @@ def main():
         model_name=model_name,
         score_threshold=0.3,  # Lower threshold to capture more documents
         top_k=20,             # Retrieve top 20 documents per query
-        output_file="data/evaluation_results/false_positives.jsonl"
+        # output_file will be auto-generated: data/false_positives_BAAI-bge-m3.jsonl
     )
     
     # Step 3: Display results

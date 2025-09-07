@@ -148,7 +148,9 @@ def search_and_evaluate(
     if top_k is None:
         top_k = config.search.top_k
     if output_file is None:
-        output_file = config.data.false_positives_output
+        # Generate model-specific filename
+        model_safe_name = model_name.replace("/", "-").replace("\\", "-")
+        output_file = f"data/false_positives_{model_safe_name}.jsonl"
     
     logger.info(f"Starting search and evaluation with model: {model_name}")
     logger.info(f"Score threshold: {score_threshold}, Top-K: {top_k}")
@@ -288,7 +290,7 @@ if __name__ == "__main__":
         model_name=model_name,
         score_threshold=0.5,  # Adjust threshold as needed
         top_k=10,  # Retrieve top 10 documents per query
-        output_file="data/false_positives.jsonl"  # Output file for false positives
+        # output_file will be auto-generated based on model name
     )
     
     logger.info("Evaluation completed!")
