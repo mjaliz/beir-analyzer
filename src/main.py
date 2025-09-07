@@ -180,7 +180,7 @@ def search_and_evaluate(
         query_relevant_docs = relevant_docs.get(query_id, set())
         
         # Embed the query
-        query_embedding = embedder.embed([query_text])[0]
+        query_embedding = embedder.embed([query_text], show_progress_bar=False)[0]
         
         # Search in Qdrant
         search_results = qdrant_storage.search(
@@ -217,6 +217,9 @@ def search_and_evaluate(
                         "query_text": query_text,
                         "doc_id": fp_doc_id,
                         "doc_text": result.payload.get("text", ""),
+                        "doc_q_id": result.payload.get("q_id", ""),
+                        "doc_q_text": result.payload.get("q_text", ""),
+                        "qrel_score": result.payload.get("qrel_score", ""),
                         "similarity_score": result.score,
                         "relevant_docs_count": len(query_relevant_docs),
                         "retrieved_docs_count": len(retrieved_doc_ids),
@@ -278,7 +281,7 @@ if __name__ == "__main__":
     model_name = "BAAI/bge-m3"
     
     # First index the corpus (comment out if already indexed)
-    # index_copurs(model_name=model_name)
+    index_copurs(model_name=model_name)
     
     # Run search and evaluation
     results = search_and_evaluate(
