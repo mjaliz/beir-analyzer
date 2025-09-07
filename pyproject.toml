@@ -1,0 +1,15 @@
+[project]
+name = "beir-analyzer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "loguru>=0.7.3",
+    "pandas>=2.3.2",
+    "pydantic>=2.11.7",
+    "pydantic-settings>=2.10.1",
+    "qdrant-client>=1.15.1",
+    "sentence-transformers>=5.1.0",
+    "tqdm>=4.67.1",
+]
