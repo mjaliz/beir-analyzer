@@ -154,11 +154,13 @@ class QdrantStorage:
         collection_name: str,
         query_vector: List[float],
         score_threshold: Optional[float] = None,
+        limit: int = 10,
     ) -> List[ScoredPoint]:
         search_params = {
             "collection_name": collection_name,
             "query_vector": query_vector,
             "with_payload": True,
+            "limit": limit,
         }
 
         if score_threshold is not None:

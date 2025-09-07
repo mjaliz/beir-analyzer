@@ -11,3 +11,4 @@ wheels/
 .ropeproject
 data
 .vscode
+.DS_Store
